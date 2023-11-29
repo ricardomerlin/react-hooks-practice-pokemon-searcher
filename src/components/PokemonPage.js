@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import PokemonCollection from "./PokemonCollection";
 import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
 
-function PokemonPage() {
+function PokemonPage({ pokemon, retrieveNewCard }) {
+
+  const[searchText, setSearchText] = useState('')
+
+function bringSearchUp (search) {
+  setSearchText(search)
+}
+console.log(searchText)
+
+
   return (
     <Container>
       <h1>Pokemon Searcher</h1>
       <br />
-      <PokemonForm />
+      <PokemonForm retrieveNewCard={retrieveNewCard} />
       <br />
-      <Search />
+      <Search bringSearchUp={bringSearchUp} />
       <br />
-      <PokemonCollection />
+      <PokemonCollection pokemon={pokemon} searchText={searchText} />
     </Container>
   );
 }
